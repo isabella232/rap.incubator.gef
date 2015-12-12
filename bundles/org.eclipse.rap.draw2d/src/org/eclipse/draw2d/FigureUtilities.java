@@ -12,16 +12,15 @@ package org.eclipse.draw2d;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.rap.swt.graphics.ColorUtil;
+import org.eclipse.rap.rwt.SingletonUtil;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontMetrics;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.draw2d.rap.swt.graphics.ColorUtil;
-import org.eclipse.jface.resource.JFaceResources;
 
 /**
  * Provides miscellaneous Figure operations.
@@ -29,14 +28,18 @@ import org.eclipse.jface.resource.JFaceResources;
 public class FigureUtilities {
 
 	private static final float RGB_VALUE_MULTIPLIER = 0.6f;
-	private static GC gc;
-	private static Font appliedFont;
-	private static FontMetrics metrics;
 	//[RAP AM] remove static usage
+	private GC gc;
+    private Font appliedFont;
+    private FontMetrics metrics;
 	//private static Color ghostFillColor = new Color(null, 31, 31, 31);
 	private static Color ghostFillColor() {
 	   return ColorUtil.getColor( 31, 31, 31 );
     }
+	
+	private static FigureUtilities instance() {
+	  return SingletonUtil.getSessionInstance( FigureUtilities.class );
+	}
 	
 	/**
 	 * Returns a new Color the same as the passed color in a darker hue.
@@ -63,9 +66,10 @@ public class FigureUtilities {
 	 */
 	public static FontMetrics getFontMetrics(Font f) {
 		setFont(f);
-		if (metrics == null)
-			metrics = getGC().getFontMetrics();
-		return metrics;
+		FigureUtilities fu = instance();
+		if (fu.metrics == null)
+			fu.metrics = getGC().getFontMetrics();
+		return fu.metrics;
 	}
 
 	/**
@@ -76,11 +80,12 @@ public class FigureUtilities {
 	 * @return the GC
 	 */
 	protected static GC getGC() {
-		if (gc == null) {
-			gc = new GC(new Shell());
-			appliedFont = gc.getFont();
+	    FigureUtilities fu = instance();
+		if (fu.gc == null) {
+			fu.gc = new GC(new Shell());
+			fu.appliedFont = fu.gc.getFont();
 		}
-		return gc;
+		return fu.gc;
 	}
 
 	/**
@@ -364,11 +369,12 @@ public class FigureUtilities {
 	 * @since 2.0
 	 */
 	protected static void setFont(Font f) {
-		if (appliedFont == f || (f != null && f.equals(appliedFont)))
+	    FigureUtilities fu = instance();
+		if (fu.appliedFont == f || (f != null && f.equals(fu.appliedFont)))
 			return;
 		getGC().setFont(f);
-		appliedFont = f;
-		metrics = null;
+		fu.appliedFont = f;
+		fu.metrics = null;
 	}
 
 	/**
