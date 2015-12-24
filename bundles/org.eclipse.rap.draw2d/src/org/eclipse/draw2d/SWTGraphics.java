@@ -819,8 +819,7 @@ public class SWTGraphics extends Graphics {
 			transform.translate(translateX, translateY);
 			translateX = 0;
 			translateY = 0;
-			// UNSUPPORTED - api is not implemented in RAP
-			// gc.setTransform(transform);
+			gc.setTransform(transform);
 			currentState.graphicHints |= ADVANCED_GRAPHICS_MASK;
 		}
 	}
@@ -976,8 +975,7 @@ public class SWTGraphics extends Graphics {
 		checkGC();
 		initTransform(true);
 		transform.rotate(degrees);
-		// UNSUPPORTED - api is not implemented in RAP
-		// gc.setTransform(transform);
+		gc.setTransform(transform);
 		elementsNeedUpdate = true;
 
 		// Can no longer operate or maintain clipping
@@ -1004,8 +1002,7 @@ public class SWTGraphics extends Graphics {
 
 		initTransform(true);
 		transform.scale(horizontal, vertical);
-		// UNSUPPORTED - api is not implemented in RAP
-		// gc.setTransform(transform);
+		gc.setTransform(transform);
 		elementsNeedUpdate = true;
 
 		checkSharedClipping();
@@ -1024,8 +1021,7 @@ public class SWTGraphics extends Graphics {
 			transform = null;
 			elementsNeedUpdate = false;
 		}
-		// UNSUPPORTED - api is not implemented in RAP
-		// gc.setTransform(transform);
+		gc.setTransform(transform);
 	}
 
 	/**
@@ -1343,8 +1339,7 @@ public class SWTGraphics extends Graphics {
 				+ matrix[3] * vert, matrix[0] * horz + matrix[2], matrix[1]
 				* horz + matrix[3], matrix[4], matrix[5]);
 
-		// UNSUPPORTED - api is not implemented in RAP
-		// gc.setTransform(transform);
+		gc.setTransform(transform);
 		elementsNeedUpdate = true;
 		// Can no longer track clipping changes
 		appliedState.relativeClip = currentState.relativeClip = null;
@@ -1366,8 +1361,7 @@ public class SWTGraphics extends Graphics {
 			checkGC();
 			transform.translate(dx, dy);
 			elementsNeedUpdate = true;
-			// UNSUPPORTED - api is not implemented in RAP
-			// gc.setTransform(transform);
+			gc.setTransform(transform);
 		} else {
 			translateX += dx;
 			translateY += dy;
@@ -1389,8 +1383,7 @@ public class SWTGraphics extends Graphics {
 		checkGC();
 		transform.translate(dx, dy);
 		elementsNeedUpdate = true;
-		// UNSUPPORTED - api is not implemented in RAP
-		// gc.setTransform(transform);
+		gc.setTransform(transform);
 		checkSharedClipping();
 		if (currentState.relativeClip != null)
 			currentState.relativeClip.translate(-dx, -dy);
