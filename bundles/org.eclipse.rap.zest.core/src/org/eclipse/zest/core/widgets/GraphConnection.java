@@ -33,7 +33,7 @@ import org.eclipse.zest.layouts.LayoutEntity;
 import org.eclipse.zest.layouts.LayoutRelationship;
 import org.eclipse.zest.layouts.constraints.LayoutConstraint;
 
-/*
+/**
  * This is the graph connection model which stores the source and destination
  * nodes and the properties of this connection (color, line width etc).
  * 
@@ -76,7 +76,8 @@ public class GraphConnection extends GraphItem {
 	private GraphLayoutConnection layoutConnection = null;
 	private boolean hasCustomTooltip;
 
-	public GraphConnection(Graph graphModel, int style, GraphNode source, GraphNode destination) {
+	public GraphConnection(Graph graphModel, int style, GraphNode source,
+			GraphNode destination) {
 		super(graphModel, style);
 
 		this.connectionStyle |= graphModel.getConnectionStyle();

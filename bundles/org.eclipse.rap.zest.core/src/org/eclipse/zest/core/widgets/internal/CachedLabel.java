@@ -65,8 +65,8 @@ public abstract class CachedLabel extends Label {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.draw2d.Figure#setForegroundColor(org.eclipse.swt.graphics
-	 * .Color)
+	 * org.eclipse.draw2d.Figure#setForegroundColor(org.eclipse.swt.graphics.
+	 * Color)
 	 */
 	public void setForegroundColor(Color fg) {
 		updateInvalidation();
@@ -77,8 +77,8 @@ public abstract class CachedLabel extends Label {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.eclipse.draw2d.Figure#setBackgroundColor(org.eclipse.swt.graphics
-	 * .Color)
+	 * org.eclipse.draw2d.Figure#setBackgroundColor(org.eclipse.swt.graphics.
+	 * Color)
 	 */
 	public void setBackgroundColor(Color bg) {
 		updateInvalidation();
@@ -122,9 +122,8 @@ public abstract class CachedLabel extends Label {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.draw2d.Figure#setBounds(org.eclipse.draw2d.geometry.Rectangle
-	 * )
+	 * @see org.eclipse.draw2d.Figure#setBounds(org.eclipse.draw2d.geometry.
+	 * Rectangle)
 	 */
 	public void setBounds(Rectangle rect) {
 		boolean resize = (rect.width != bounds.width)
@@ -206,8 +205,7 @@ public abstract class CachedLabel extends Label {
 			// @tag TODO : Dispose of the image properly
 			// ZestPlugin.getDefault().addImage(cachedImage.toString(),
 			// cachedImage);
-			// UNSUPPORTED - image constructor not implemented in RAP
-			// GC gc = new GC(cachedImage);
+
 			GC gc = new GC(cachedImage.getDevice());
 
 			Graphics graphics2 = new SWTGraphics(gc);

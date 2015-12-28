@@ -116,7 +116,7 @@ class BufferedGraphicsSource implements GraphicsSource {
 			imageGC.setLineWidth(controlGC.getLineWidth());
 			//imageGC.setXORMode(controlGC.getXORMode());
 			graphics = new SWTGraphics(imageGC);
-			//graphics.translate(inUse.getLocation().negate());
+			graphics.translate(inUse.getLocation().negate());
 		} else {
 			graphics = new SWTGraphics(controlGC);
 		}

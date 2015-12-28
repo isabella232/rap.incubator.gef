@@ -39,7 +39,7 @@ import org.eclipse.zest.layouts.LayoutRelationship;
 import org.eclipse.zest.layouts.LayoutStyles;
 import org.eclipse.zest.layouts.algorithms.TreeLayoutAlgorithm;
 
-/*
+/**
  * A Container than can be added to a Graph. Nodes can be added to this
  * container. The container supports collapsing and expanding and has the same
  * properties as the nodes. Containers cannot have custom figures.
@@ -67,14 +67,16 @@ public class GraphContainer extends GraphNode implements IContainer {
 	private ScrollPane scrollPane;
 	private LayoutAlgorithm layoutAlgorithm;
 	private boolean isExpanded = false;
-	//private ScalableFreeformLayeredPane scalledLayer;
+	// private ScalableFreeformLayeredPane scalledLayer;
 	private AspectRatioFreeformLayer scalledLayer;
 
 	/**
-	 * Creates a new GraphContainer.  A GraphContainer may contain nodes,
-	 * and has many of the same properties as a graph node.
-	 * @param graph The graph that the container is being added to
-	 * @param style 
+	 * Creates a new GraphContainer. A GraphContainer may contain nodes, and has
+	 * many of the same properties as a graph node.
+	 * 
+	 * @param graph
+	 *            The graph that the container is being added to
+	 * @param style
 	 */
 	public GraphContainer(IContainer graph, int style) {
 		this(graph, style, "");
@@ -97,18 +99,17 @@ public class GraphContainer extends GraphNode implements IContainer {
 	 * Custom figures cannot be set on a GraphContainer.
 	 */
 	public void setCustomFigure(IFigure nodeFigure) {
-		throw new RuntimeException("Operation not supported:  Containers cannot have custom figures");
+		throw new RuntimeException(
+				"Operation not supported:  Containers cannot have custom figures");
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.mylar.zest.core.widgets.GraphItem#getItemType()
-	public int getItemType() {
-		return GraphItem.CONTAINER;
-	}
-
-	/**
-	 * Gets the figure for this container.
+	 * 
+	 * @see org.eclipse.mylar.zest.core.widgets.GraphItem#getItemType() public
+	 * int getItemType() { return GraphItem.CONTAINER; }
+	 * 
+	 * /** Gets the figure for this container.
 	 */
 	public IFigure getNodeFigure() {
 		return this.nodeFigure;
@@ -116,6 +117,7 @@ public class GraphContainer extends GraphNode implements IContainer {
 
 	/**
 	 * Close this node.
+	 * 
 	 * @param animate
 	 */
 	public void close(boolean animate) {

@@ -17,6 +17,7 @@ import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Layer;
 import org.eclipse.draw2d.LayeredPane;
+import org.eclipse.draw2d.ScalableFigure;
 import org.eclipse.draw2d.ScalableLayeredPane;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.Viewport;
@@ -98,8 +99,8 @@ import org.eclipse.gef.tools.MarqueeDragTracker;
  * @author Eric Bordeau
  * @since 2.1.1
  */
-public class ScalableRootEditPart extends SimpleRootEditPart implements
-		LayerConstants, LayerManager {
+public class ScalableRootEditPart extends SimpleRootEditPart
+		implements LayerConstants, LayerManager {
 
 	class FeedbackLayer extends Layer {
 		FeedbackLayer() {
@@ -137,8 +138,21 @@ public class ScalableRootEditPart extends SimpleRootEditPart implements
 	 * Constructor for ScalableFreeformRootEditPart
 	 */
 	public ScalableRootEditPart() {
-		zoomManager = new ZoomManager((ScalableLayeredPane) getScaledLayers(),
+		zoomManager = createZoomManager((ScalableLayeredPane) getScaledLayers(),
 				((Viewport) getFigure()));
+	}
+
+	/**
+	 * Responsible of creating a {@link ZoomManager} to be used by this
+	 * {@link ScalableRootEditPart}.
+	 * 
+	 * @return A new {@link ZoomManager} bound to the given
+	 *         {@link ScalableFigure} and {@link Viewport}.
+	 * @since 3.10
+	 */
+	protected ZoomManager createZoomManager(ScalableFigure scalableFigure,
+			Viewport viewport) {
+		return new ZoomManager(scalableFigure, viewport);
 	}
 
 	/**
@@ -330,14 +344,14 @@ public class ScalableRootEditPart extends SimpleRootEditPart implements
 	protected void refreshGridLayer() {
 		boolean visible = false;
 		GridLayer grid = (GridLayer) getLayer(GRID_LAYER);
-		Boolean val = (Boolean) getViewer().getProperty(
-				SnapToGrid.PROPERTY_GRID_VISIBLE);
+		Boolean val = (Boolean) getViewer()
+				.getProperty(SnapToGrid.PROPERTY_GRID_VISIBLE);
 		if (val != null)
 			visible = val.booleanValue();
-		grid.setOrigin((Point) getViewer().getProperty(
-				SnapToGrid.PROPERTY_GRID_ORIGIN));
-		grid.setSpacing((Dimension) getViewer().getProperty(
-				SnapToGrid.PROPERTY_GRID_SPACING));
+		grid.setOrigin((Point) getViewer()
+				.getProperty(SnapToGrid.PROPERTY_GRID_ORIGIN));
+		grid.setSpacing((Dimension) getViewer()
+				.getProperty(SnapToGrid.PROPERTY_GRID_SPACING));
 		grid.setVisible(visible);
 	}
 
