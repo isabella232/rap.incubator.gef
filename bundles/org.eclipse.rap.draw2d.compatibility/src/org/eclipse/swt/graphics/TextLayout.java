@@ -856,7 +856,7 @@ public void setJustify (boolean justify) {
 
 public void setOrientation (int orientation) {
 	checkLayout();
-	int mask = SWT.LEFT_TO_RIGHT | org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT;
+	int mask = SWT.LEFT_TO_RIGHT | SWT.RIGHT_TO_LEFT;
 	orientation &= mask;
 	if (orientation == 0) return;
 	if ((orientation & SWT.LEFT_TO_RIGHT) != 0) orientation = SWT.LEFT_TO_RIGHT;

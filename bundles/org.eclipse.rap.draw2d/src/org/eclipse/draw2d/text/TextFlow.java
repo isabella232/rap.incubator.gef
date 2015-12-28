@@ -635,7 +635,7 @@ public class TextFlow extends InlineFlow {
 		} else {
 			TextLayout tl = FlowUtilities.INSTANCE().getTextLayout();
 			if (isMirrored())
-				tl.setOrientation(org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT);
+				tl.setOrientation(SWT.RIGHT_TO_LEFT);
 			tl.setFont(g.getFont());
 			tl.setText(draw);
 			g.drawTextLayout(tl, x, y);

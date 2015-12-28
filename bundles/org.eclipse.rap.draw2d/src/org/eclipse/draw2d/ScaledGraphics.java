@@ -16,11 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
-import org.eclipse.draw2d.rap.swt.graphics.LineAttributes;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
@@ -32,6 +28,11 @@ import org.eclipse.swt.graphics.Pattern;
 import org.eclipse.swt.graphics.TextLayout;
 import org.eclipse.swt.graphics.TextStyle;
 import org.eclipse.swt.widgets.Display;
+
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.rap.swt.graphics.LineAttributes;
 
 /**
  * A Graphics object able to scale all operations based on the current scale
@@ -57,7 +58,8 @@ public class ScaledGraphics extends Graphics {
 		}
 
 		public boolean equals(Object obj) {
-			return (((FontKey) obj).font.equals(font) && ((FontKey) obj).height == height);
+			return (((FontKey) obj).font.equals(font)
+					&& ((FontKey) obj).height == height);
 		}
 
 		public int hashCode() {
@@ -242,26 +244,26 @@ public class ScaledGraphics extends Graphics {
 		for (int i = 0; i < p.types.length; i++) {
 			byte type = p.types[i];
 			switch (type) {
-			case org.eclipse.draw2d.rap.swt.SWT.PATH_MOVE_TO:
+			case SWT.PATH_MOVE_TO:
 				scaledPath.moveTo(p.points[index], p.points[index + 1]);
 				index += 2;
 				break;
-			case org.eclipse.draw2d.rap.swt.SWT.PATH_LINE_TO:
+			case SWT.PATH_LINE_TO:
 				scaledPath.lineTo(p.points[index], p.points[index + 1]);
 				index += 2;
 				break;
-			case org.eclipse.draw2d.rap.swt.SWT.PATH_CUBIC_TO:
+			case SWT.PATH_CUBIC_TO:
 				scaledPath.cubicTo(p.points[index], p.points[index + 1],
 						p.points[index + 2], p.points[index + 3],
 						p.points[index + 4], p.points[index + 5]);
 				index += 6;
 				break;
-			case org.eclipse.draw2d.rap.swt.SWT.PATH_QUAD_TO:
+			case SWT.PATH_QUAD_TO:
 				scaledPath.quadTo(p.points[index], p.points[index + 1],
 						p.points[index + 2], p.points[index + 3]);
 				index += 4;
 				break;
-			case org.eclipse.draw2d.rap.swt.SWT.PATH_CLOSE:
+			case SWT.PATH_CLOSE:
 				scaledPath.close();
 				break;
 			}
@@ -308,7 +310,9 @@ public class ScaledGraphics extends Graphics {
 				(int) (Math.floor((size.height * zoom + fractionalY))));
 	}
 
-	/** @see Graphics#drawImage(Image, int, int, int, int, int, int, int, int) */
+	/**
+	 * @see Graphics#drawImage(Image, int, int, int, int, int, int, int, int)
+	 */
 	public void drawImage(Image srcImage, int sx, int sy, int sw, int sh,
 			int tx, int ty, int tw, int th) {
 		// "t" == target rectangle, "s" = source
@@ -880,7 +884,8 @@ public class ScaledGraphics extends Graphics {
 		double dyFloat = dy * zoom + fractionalY;
 		fractionalX = dxFloat - Math.floor(dxFloat);
 		fractionalY = dyFloat - Math.floor(dyFloat);
-		graphics.translate((int) Math.floor(dxFloat), (int) Math.floor(dyFloat));
+		graphics.translate((int) Math.floor(dxFloat),
+				(int) Math.floor(dyFloat));
 	}
 
 	/** @see Graphics#translate(float, float) */
@@ -889,7 +894,8 @@ public class ScaledGraphics extends Graphics {
 		double dyFloat = dy * zoom + fractionalY;
 		fractionalX = dxFloat - Math.floor(dxFloat);
 		fractionalY = dyFloat - Math.floor(dyFloat);
-		graphics.translate((int) Math.floor(dxFloat), (int) Math.floor(dyFloat));
+		graphics.translate((int) Math.floor(dxFloat),
+				(int) Math.floor(dyFloat));
 	}
 
 	private Rectangle zoomClipRect(Rectangle r) {
@@ -915,8 +921,8 @@ public class ScaledGraphics extends Graphics {
 	Font zoomFont(Font f) {
 		if (f == null) {
 			Font localFont = getLocalFont();
-			f = localFont != null ? localFont : Display.getCurrent()
-					.getSystemFont();
+			f = localFont != null ? localFont
+					: Display.getCurrent().getSystemFont();
 		}
 		FontData data = getCachedFontData(f);
 		int zoomedFontHeight = zoomFontHeight(data.getHeight());

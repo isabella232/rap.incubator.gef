@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.draw2d;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleControlEvent;
 import org.eclipse.swt.accessibility.AccessibleControlListener;
 import org.eclipse.swt.accessibility.AccessibleEvent;
@@ -51,7 +52,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.ui.presentations.PresentationUtil;
 
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.SWT;
 
 /**
  * The LightweightSystem is the link between SWT and Draw2d. It is the component
@@ -117,8 +117,8 @@ public class LightweightSystem {
 		canvas.addDisposeListener(handler);
 		// HACK: for DND in RAP
 		PresentationUtil.addDragListener(canvas, handler);
-		DragSource dragSource = new DragSource(canvas, DND.DROP_MOVE
-				| DND.DROP_COPY | DND.DROP_LINK);
+		DragSource dragSource = new DragSource(canvas,
+				DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_LINK);
 		final DragSourceListener listener = new DragSourceListener() {
 
 			public void dragStart(DragSourceEvent event) {
@@ -139,7 +139,7 @@ public class LightweightSystem {
 
 		dragSource.addDragListener(listener);
 
-		canvas.addListener(org.eclipse.draw2d.rap.swt.SWT.MouseWheel, handler);
+		canvas.addListener(SWT.MouseWheel, handler);
 
 		canvas.addControlListener(new ControlAdapter() {
 			public void controlResized(ControlEvent e) {
@@ -271,11 +271,11 @@ public class LightweightSystem {
 			return;
 		canvas = c;
 		if ((c.getStyle() & SWT.DOUBLE_BUFFERED) != 0)
-			getUpdateManager().setGraphicsSource(
-					new NativeGraphicsSource(canvas));
+			getUpdateManager()
+					.setGraphicsSource(new NativeGraphicsSource(canvas));
 		else
-			getUpdateManager().setGraphicsSource(
-					new BufferedGraphicsSource(canvas));
+			getUpdateManager()
+					.setGraphicsSource(new BufferedGraphicsSource(canvas));
 		getEventDispatcher().setControl(c);
 		addListeners();
 
@@ -376,7 +376,8 @@ public class LightweightSystem {
 		 * @see IFigure#isMirrored()
 		 */
 		public boolean isMirrored() {
-			return (LightweightSystem.this.canvas.getStyle() & org.eclipse.draw2d.rap.swt.SWT.MIRRORED) != 0;
+			return (LightweightSystem.this.canvas.getStyle()
+					& SWT.MIRRORED) != 0;
 		}
 
 		/** @see Figure#isShowing() */
@@ -419,8 +420,8 @@ public class LightweightSystem {
 										}
 										Event ev = new Event();
 										ev.display = display;
-										Point loc = canvas.toControl(display
-												.getCursorLocation());
+										Point loc = canvas.toControl(
+												display.getCursorLocation());
 										ev.type = SWT.DragDetect;
 										ev.widget = widget;
 										ev.button = 1;
@@ -604,7 +605,7 @@ public class LightweightSystem {
 		 */
 		public void handleEvent(Event event) {
 			// Mouse wheel events
-			if (event.type == org.eclipse.draw2d.rap.swt.SWT.MouseWheel)
+			if (event.type == SWT.MouseWheel)
 				getEventDispatcher().dispatchMouseWheelScrolled(event);
 			// HACK: for DND in RAP
 			else if (event.type == SWT.DragDetect) {

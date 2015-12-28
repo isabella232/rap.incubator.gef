@@ -282,7 +282,7 @@ public class Thumbnail extends Figure implements UpdateListener {
 
 			//tileGC = new GC(tileImage,
 			tileGC = new GC(tileImage.getDevice(),
-					sourceFigure.isMirrored() ? org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT : SWT.NONE);
+					sourceFigure.isMirrored() ? SWT.RIGHT_TO_LEFT : SWT.NONE);
 			tileGCGraphics = new SWTGraphics(tileGC);
 			tileGraphics = new ScaledGraphics(tileGCGraphics);
 

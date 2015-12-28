@@ -90,7 +90,7 @@ private static void populatePage(FlowPage page) {
 	TextFlow flow = new TextFlow();
 	flow.setText("Text inside a proxy figure with BiDi: \u0634\u0637\u0635 \u0639\u0633\u0640 \u0632\u0638\u0635.");
 	FlowPage innerPage = new FlowPage();
-	innerPage.setOrientation(org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT);
+	innerPage.setOrientation(SWT.RIGHT_TO_LEFT);
 	innerPage.add(flow);
 	proxy2.add(innerPage);
 	page.add(proxy2);

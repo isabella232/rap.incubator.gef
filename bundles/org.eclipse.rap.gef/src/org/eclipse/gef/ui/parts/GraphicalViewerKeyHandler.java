@@ -124,9 +124,11 @@ public class GraphicalViewerKeyHandler extends KeyHandler {
 
 	boolean acceptScroll(KeyEvent event) {
 		return ((event.stateMask & SWT.CTRL) != 0
-				&& (event.stateMask & SWT.SHIFT) != 0 && (event.keyCode == SWT.ARROW_DOWN
-				|| event.keyCode == SWT.ARROW_LEFT
-				|| event.keyCode == SWT.ARROW_RIGHT || event.keyCode == SWT.ARROW_UP));
+				&& (event.stateMask & SWT.SHIFT) != 0
+				&& (event.keyCode == SWT.ARROW_DOWN
+						|| event.keyCode == SWT.ARROW_LEFT
+						|| event.keyCode == SWT.ARROW_RIGHT
+						|| event.keyCode == SWT.ARROW_UP));
 	}
 
 	/**
@@ -156,8 +158,8 @@ public class GraphicalViewerKeyHandler extends KeyHandler {
 		while (counter < 0)
 			counter += connections.size();
 		counter %= connections.size();
-		return (ConnectionEditPart) connections.get(counter
-				% connections.size());
+		return (ConnectionEditPart) connections
+				.get(counter % connections.size());
 	}
 
 	private List getValidNavigationTargets(List candidateEditParts) {
@@ -279,7 +281,7 @@ public class GraphicalViewerKeyHandler extends KeyHandler {
 	 * @since 3.4
 	 */
 	protected boolean isViewerMirrored() {
-		return (viewer.getControl().getStyle() & org.eclipse.draw2d.rap.swt.SWT.MIRRORED) != 0;
+		return (viewer.getControl().getStyle() & SWT.MIRRORED) != 0;
 	}
 
 	/**
@@ -316,15 +318,13 @@ public class GraphicalViewerKeyHandler extends KeyHandler {
 
 		switch (event.keyCode) {
 		case SWT.ARROW_LEFT:
-			if (navigateNextSibling(event,
-					isViewerMirrored() ? PositionConstants.EAST
-							: PositionConstants.WEST))
+			if (navigateNextSibling(event, isViewerMirrored()
+					? PositionConstants.EAST : PositionConstants.WEST))
 				return true;
 			break;
 		case SWT.ARROW_RIGHT:
-			if (navigateNextSibling(event,
-					isViewerMirrored() ? PositionConstants.WEST
-							: PositionConstants.EAST))
+			if (navigateNextSibling(event, isViewerMirrored()
+					? PositionConstants.WEST : PositionConstants.EAST))
 				return true;
 			break;
 		case SWT.ARROW_UP:
@@ -364,9 +364,8 @@ public class GraphicalViewerKeyHandler extends KeyHandler {
 		GraphicalEditPart node = getCachedNode();
 		if (focus instanceof ConnectionEditPart) {
 			current = (ConnectionEditPart) focus;
-			if (node == null
-					|| (node != current.getSource() && node != current
-							.getTarget())) {
+			if (node == null || (node != current.getSource()
+					&& node != current.getTarget())) {
 				node = (GraphicalEditPart) current.getSource();
 				counter = 0;
 			}

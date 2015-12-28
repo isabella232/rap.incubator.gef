@@ -104,11 +104,11 @@ class BufferedGraphicsSource implements GraphicsSource {
 		}
 
 		controlGC = new GC(control, control.getStyle()
-				& (org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT | SWT.LEFT_TO_RIGHT));
+				& (SWT.RIGHT_TO_LEFT | SWT.LEFT_TO_RIGHT));
 		Graphics graphics;
 		if (imageBuffer != null) {
 			imageGC = new GC(imageBuffer.getDevice(), control.getStyle()
-					& (org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT | SWT.LEFT_TO_RIGHT));
+					& (SWT.RIGHT_TO_LEFT | SWT.LEFT_TO_RIGHT));
 			imageGC.setBackground(controlGC.getBackground());
 			imageGC.setForeground(controlGC.getForeground());
 			imageGC.setFont(controlGC.getFont());

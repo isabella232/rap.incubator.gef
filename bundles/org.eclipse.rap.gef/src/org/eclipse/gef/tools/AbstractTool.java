@@ -90,6 +90,7 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	private static final int FLAG_HOVER = 2;
 	private static final int FLAG_PAST_THRESHOLD = 1;
 	private static final int FLAG_UNLOAD = 4;
+
 	{
 		setFlag(FLAG_UNLOAD, true);
 	}
@@ -266,8 +267,8 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 		getCurrentInput().verifyMouseButtons = true;
 		setState(STATE_INITIAL);
 		setFlag(FLAG_ACTIVE, true);
-		getDomain().getCommandStack().addCommandStackEventListener(
-				commandStackListener);
+		getDomain().getCommandStack()
+				.addCommandStackEventListener(commandStackListener);
 	}
 
 	/**
@@ -311,8 +312,8 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 			return;
 
 		try {
-			PropertyDescriptor[] descriptors = Introspector.getBeanInfo(
-					getClass(), Introspector.IGNORE_ALL_BEANINFO)
+			PropertyDescriptor[] descriptors = Introspector
+					.getBeanInfo(getClass(), Introspector.IGNORE_ALL_BEANINFO)
 					.getPropertyDescriptors();
 			PropertyDescriptor property = null;
 			for (int i = 0; i < descriptors.length; i++) {
@@ -396,8 +397,8 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 		setState(STATE_TERMINAL);
 		operationSet = null;
 		current = null;
-		getDomain().getCommandStack().removeCommandStackEventListener(
-				commandStackListener);
+		getDomain().getCommandStack()
+				.removeCommandStackEventListener(commandStackListener);
 	}
 
 	/**
@@ -419,13 +420,13 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	 *            the command to execute
 	 */
 	protected void executeCommand(Command command) {
-		getDomain().getCommandStack().removeCommandStackEventListener(
-				commandStackListener);
+		getDomain().getCommandStack()
+				.removeCommandStackEventListener(commandStackListener);
 		try {
 			getDomain().getCommandStack().execute(command);
 		} finally {
-			getDomain().getCommandStack().addCommandStackEventListener(
-					commandStackListener);
+			getDomain().getCommandStack()
+					.addCommandStackEventListener(commandStackListener);
 		}
 	}
 
@@ -840,10 +841,9 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	}
 
 	/**
-	 * Override to process a traverse event. If the event's
-	 * {@link KeyEvent#doit doit} field is set to <code>false</code>, the
-	 * traversal will be prevented from occurring. Otherwise, a traverse will
-	 * occur.
+	 * Override to process a traverse event. If the event's {@link KeyEvent#doit
+	 * doit} field is set to <code>false</code>, the traversal will be prevented
+	 * from occurring. Otherwise, a traverse will occur.
 	 * 
 	 * @param event
 	 *            the SWT traverse event
@@ -944,7 +944,7 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	}
 
 	boolean isCurrentViewerMirrored() {
-		return (getCurrentViewer().getControl().getStyle() & org.eclipse.draw2d.rap.swt.SWT.MIRRORED) != 0;
+		return (getCurrentViewer().getControl().getStyle() & SWT.MIRRORED) != 0;
 	}
 
 	/**
@@ -957,8 +957,8 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	}
 
 	boolean isInDragInProgress() {
-		return isInState(STATE_DRAG_IN_PROGRESS
-				| STATE_ACCESSIBLE_DRAG_IN_PROGRESS);
+		return isInState(
+				STATE_DRAG_IN_PROGRESS | STATE_ACCESSIBLE_DRAG_IN_PROGRESS);
 	}
 
 	/*
@@ -967,11 +967,16 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	 */
 	private boolean isInputSynched(MouseEvent event) {
 		Input input = getCurrentInput();
-		return input.isMouseButtonDown(1) == ((event.stateMask & SWT.BUTTON1) != 0)
-				&& input.isMouseButtonDown(2) == ((event.stateMask & SWT.BUTTON2) != 0)
-				&& input.isMouseButtonDown(3) == ((event.stateMask & SWT.BUTTON3) != 0)
-				&& input.isMouseButtonDown(4) == ((event.stateMask & SWT.BUTTON4) != 0)
-				&& input.isMouseButtonDown(5) == ((event.stateMask & SWT.BUTTON5) != 0);
+		return input
+				.isMouseButtonDown(1) == ((event.stateMask & SWT.BUTTON1) != 0)
+				&& input.isMouseButtonDown(
+						2) == ((event.stateMask & SWT.BUTTON2) != 0)
+				&& input.isMouseButtonDown(
+						3) == ((event.stateMask & SWT.BUTTON3) != 0)
+				&& input.isMouseButtonDown(
+						4) == ((event.stateMask & SWT.BUTTON4) != 0)
+				&& input.isMouseButtonDown(
+						5) == ((event.stateMask & SWT.BUTTON5) != 0);
 	}
 
 	/**
@@ -1240,7 +1245,8 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	 * @see org.eclipse.gef.Tool#nativeDragFinished(DragSourceEvent,
 	 *      EditPartViewer)
 	 */
-	public void nativeDragFinished(DragSourceEvent event, EditPartViewer viewer) {
+	public void nativeDragFinished(DragSourceEvent event,
+			EditPartViewer viewer) {
 		if (!isViewerImportant(viewer))
 			return;
 		setViewer(viewer);
@@ -1251,7 +1257,8 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	 * @see org.eclipse.gef.Tool#nativeDragStarted(DragSourceEvent,
 	 *      EditPartViewer)
 	 */
-	public void nativeDragStarted(DragSourceEvent event, EditPartViewer viewer) {
+	public void nativeDragStarted(DragSourceEvent event,
+			EditPartViewer viewer) {
 		if (!isViewerImportant(viewer))
 			return;
 		setViewer(viewer);
@@ -1270,9 +1277,8 @@ public abstract class AbstractTool extends org.eclipse.gef.util.FlagSupport
 	 * @since 3.1
 	 */
 	protected void performViewerMouseWheel(Event event, EditPartViewer viewer) {
-		MouseWheelHandler handler = (MouseWheelHandler) viewer
-				.getProperty(MouseWheelHandler.KeyGenerator
-						.getKey(event.stateMask));
+		MouseWheelHandler handler = (MouseWheelHandler) viewer.getProperty(
+				MouseWheelHandler.KeyGenerator.getKey(event.stateMask));
 		if (handler != null)
 			handler.handleMouseWheel(event, viewer);
 	}

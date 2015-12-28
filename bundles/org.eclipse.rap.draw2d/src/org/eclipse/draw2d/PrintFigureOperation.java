@@ -83,7 +83,7 @@ public class PrintFigureOperation extends PrintOperation {
 	 * @see org.eclipse.draw2d.PrintOperation#getGraphicsOrientation()
 	 */
 	int getGraphicsOrientation() {
-		return getPrintSource().isMirrored() ? org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT
+		return getPrintSource().isMirrored() ? SWT.RIGHT_TO_LEFT
 				: SWT.LEFT_TO_RIGHT;
 	}
 

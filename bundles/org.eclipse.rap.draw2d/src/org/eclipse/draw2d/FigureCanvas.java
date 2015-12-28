@@ -57,7 +57,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
  */
 public class FigureCanvas extends Composite {
 
-	private static final int ACCEPTED_STYLES = org.eclipse.draw2d.rap.swt.SWT.RIGHT_TO_LEFT
+	private static final int ACCEPTED_STYLES = SWT.RIGHT_TO_LEFT
 			| SWT.LEFT_TO_RIGHT
 			| SWT.V_SCROLL
 			| SWT.H_SCROLL

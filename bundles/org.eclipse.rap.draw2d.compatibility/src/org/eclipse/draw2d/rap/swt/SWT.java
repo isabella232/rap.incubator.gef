@@ -39,55 +39,6 @@ public class SWT {
   //RAP [ar] - The following are ADDED functionality for GEF port
   
   /**
-   * The mouse wheel event type (value is 37).
-   * 
-   * @see org.eclipse.swt.widgets.Widget#addListener
-   * @see org.eclipse.swt.widgets.Display#addFilter
-   * @see org.eclipse.swt.widgets.Event
-   * 
-   * @since 3.1
-   */
-  public static final int MouseWheel = 37;
-  
-  /**
-  * The mouse exit event type (value is 7).
-  *
-  * @see org.eclipse.swt.widgets.Widget#addListener
-  * @see org.eclipse.swt.widgets.Display#addFilter
-  * @see org.eclipse.swt.widgets.Event
-  *
-  * @see org.eclipse.swt.widgets.Control#addMouseTrackListener
-  * @see org.eclipse.swt.events.MouseTrackListener#mouseExit
-  * @see org.eclipse.swt.events.MouseEvent
-  */
-  public static final int MouseExit = 7;
-  
-  /**
-   * Style constant to indicate coordinate mirroring (value is 1&lt;&lt;27).
-   * <p>
-   * <b>Used By:</b>
-   * <ul>
-   * <li><code>Control</code></li>
-   * <li><code>Menu</code></li>
-   * </ul>
-   * </p>
-   * 
-   * @since 2.1.2
-   */
-  public static final int MIRRORED = 1 << 27;
-  
-  /**
-   * System resize north-east-south-west cursor (value is 6).
-   */
-  public static final int CURSOR_SIZENESW = 6;
-  
-  
-  /**
-   * System resize north-west-south-east cursor (value is 8).
-   */
-  public static final int CURSOR_SIZENWSE = 8;
-  
-  /**
    * Input Method Editor style constant for native input behavior (value is
    * 1&lt;&lt;3).
    */
@@ -298,42 +249,6 @@ public class SWT {
   public static final int MOVEMENT_WORD_START = 1 << 4;
   
   /**
-   * Path constant that represents a "move to" operation (value is 1).
-   * 
-   * @since 3.1
-   */
-  public static final int PATH_MOVE_TO = 1;
-  
-  /**
-   * Path constant that represents a "line to" operation (value is 2).
-   * 
-   * @since 3.1
-   */
-  public static final int PATH_LINE_TO = 2;
-  
-  /**
-   * Path constant that represents a "quadratic curve to" operation (value is
-   * 3).
-   * 
-   * @since 3.1
-   */
-  public static final int PATH_QUAD_TO = 3;
-  
-  /**
-   * Path constant that represents a "cubic curve to" operation (value is 4).
-   * 
-   * @since 3.1
-   */
-  public static final int PATH_CUBIC_TO = 4;
-  
-  /**
-   * Path constant that represents a "close" operation (value is 5).
-   * 
-   * @since 3.1
-   */
-  public static final int PATH_CLOSE = 5;
-  
-  /**
    * Even odd rule for filling operations (value is 1).
    * 
    * @since 3.1
@@ -346,21 +261,6 @@ public class SWT {
    * @since 3.1
    */
   public static final int FILL_WINDING = 2;
-  
-  /**
-   * The <code>Image</code> constructor argument indicating that the new image
-   * should have the appearance of a "disabled" (using the platform's rules for
-   * how this should look) copy of the image provided as an argument (value is
-   * 1).
-   */
-  public static final int IMAGE_DISABLE = 1;
-  
-  /**
-   * The <code>Image</code> constructor argument indicating that the new image
-   * should have the appearance of a "gray scaled" copy of the image provided as
-   * an argument (value is 2).
-   */
-  public static final int IMAGE_GRAY = 2;
   
   /**
    * Constants to indicate line scrolling (value is 1).
@@ -398,40 +298,6 @@ public class SWT {
    */
   public static final int MeasureItem = 41;
   
-  /**
-   * Style constant for right to left orientation (value is 1&lt;&lt;26).
-   * <p>
-   * When orientation is not explicitly specified, orientation is inherited.
-   * This means that children will be assigned the orientation of their parent.
-   * To override this behavior and force an orientation for a child, explicitly
-   * set the orientation of the child when that child is created. <br>
-   * Note that this is a <em>HINT</em>.
-   * </p>
-   * <p>
-   * <b>Used By:</b>
-   * <ul>
-   * <li><code>Control</code></li>
-   * <li><code>Menu</code></li>
-   * <li><code>GC</code></li>
-   * </ul>
-   * </p>
-   * 
-   * @since 2.1.2
-   */
-  public static final int RIGHT_TO_LEFT = 1 << 26;
-  
-  /**
-   * The paint event type (value is 9).
-   * 
-   * @see org.eclipse.swt.widgets.Widget#addListener
-   * @see org.eclipse.swt.widgets.Display#addFilter
-   * @see org.eclipse.swt.widgets.Event
-   * 
-   * @see org.eclipse.swt.widgets.Control#addPaintListener
-   * @see org.eclipse.swt.events.PaintListener#paintControl
-   * @see org.eclipse.swt.events.PaintEvent
-   */
-  public static final int Paint = 9; 
   //ENDRAP
 
 }

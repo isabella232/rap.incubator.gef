@@ -126,8 +126,7 @@ public class ToolbarDropdownContributionItem extends ContributionItem {
 			if (entry.grayImage == null) {
 				Image image = getImage(desc);
 				if (image != null) {
-					entry.grayImage = new Image(null, image,
-							org.eclipse.draw2d.rap.swt.SWT.IMAGE_GRAY);
+					entry.grayImage = new Image(null, image, SWT.IMAGE_GRAY);
 				}
 			}
 			return entry.grayImage;
@@ -135,8 +134,8 @@ public class ToolbarDropdownContributionItem extends ContributionItem {
 
 		Image getMissingImage() {
 			if (missingImage == null) {
-				missingImage = getImage(ImageDescriptor
-						.getMissingImageDescriptor());
+				missingImage = getImage(
+						ImageDescriptor.getMissingImageDescriptor());
 			}
 			return missingImage;
 		}
@@ -434,8 +433,8 @@ public class ToolbarDropdownContributionItem extends ContributionItem {
 					if (m != null) {
 						// position the menu below the drop down item
 						Rectangle b = ti.getBounds();
-						Point p = ti.getParent().toDisplay(
-								new Point(b.x, b.y + b.height));
+						Point p = ti.getParent()
+								.toDisplay(new Point(b.x, b.y + b.height));
 						m.setLocation(p.x, p.y); // waiting for SWT 0.42
 						m.setVisible(true);
 						return; // we don't fire the action
@@ -524,12 +523,11 @@ public class ToolbarDropdownContributionItem extends ContributionItem {
 			boolean tooltipTextChanged = propertyName == null
 					|| propertyName.equals(Action.TOOL_TIP_TEXT);
 			boolean enableStateChanged = propertyName == null
-					|| propertyName.equals(Action.ENABLED)
-					|| propertyName
+					|| propertyName.equals(Action.ENABLED) || propertyName
 							.equals(IContributionManagerOverrides.P_ENABLED);
 			boolean checkChanged = (action.getStyle() == IAction.AS_CHECK_BOX)
-					&& (propertyName == null || propertyName
-							.equals(Action.CHECKED));
+					&& (propertyName == null
+							|| propertyName.equals(Action.CHECKED));
 
 			if (widget instanceof ToolItem) {
 				ToolItem ti = (ToolItem) widget;
@@ -666,8 +664,8 @@ public class ToolbarDropdownContributionItem extends ContributionItem {
 		if (widget instanceof ToolItem) {
 			Image image = cache.getImage(action.getImageDescriptor());
 			Image hoverImage = cache.getImage(action.getHoverImageDescriptor());
-			Image disabledImage = cache.getImage(action
-					.getDisabledImageDescriptor());
+			Image disabledImage = cache
+					.getImage(action.getDisabledImageDescriptor());
 
 			// If there is no regular image, but there is a hover image,
 			// convert the hover image to gray and use it as the regular image.
