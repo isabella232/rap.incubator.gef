@@ -56,7 +56,7 @@ public abstract class PaletteEditPart extends AbstractGraphicalEditPart
 	 */
 	public static final String XML_NAME = "entry"; //$NON-NLS-1$
 	private static final Border TOOLTIP_BORDER = new MarginBorder(0, 2, 1, 0);
-	private static ImageCache globalImageCache;
+	private ImageCache globalImageCache;
 	private AccessibleEditPart acc;
 	private PropertyChangeListener childListener = new PropertyChangeListener() {
 		public void propertyChange(PropertyChangeEvent evt) {
@@ -191,7 +191,7 @@ public abstract class PaletteEditPart extends AbstractGraphicalEditPart
 	 * 
 	 * @return the image cache.
 	 */
-	protected static ImageCache getImageCache() {
+	protected ImageCache getImageCache() {
 		ImageCache cache = globalImageCache;
 		if (cache == null) {
 			globalImageCache = cache = new ImageCache();
@@ -298,10 +298,9 @@ public abstract class PaletteEditPart extends AbstractGraphicalEditPart
 				text = entry.getLabel();
 		} else {
 			if (needName)
-				text = entry.getLabel()
-						+ " " //$NON-NLS-1$
-						+ PaletteMessages.get().NAME_DESCRIPTION_SEPARATOR
-						+ " " + desc; //$NON-NLS-1$
+				text = entry.getLabel() + " " //$NON-NLS-1$
+						+ PaletteMessages.get().NAME_DESCRIPTION_SEPARATOR + " " //$NON-NLS-1$
+						+ desc;
 			else
 				text = desc;
 		}
@@ -371,8 +370,8 @@ public abstract class PaletteEditPart extends AbstractGraphicalEditPart
 	public void saveState(IMemento memento) {
 		Iterator iter = getChildren().iterator();
 		while (iter.hasNext())
-			((PaletteEditPart) iter.next()).saveState(memento
-					.createChild(XML_NAME));
+			((PaletteEditPart) iter.next())
+					.saveState(memento.createChild(XML_NAME));
 	}
 
 	/**

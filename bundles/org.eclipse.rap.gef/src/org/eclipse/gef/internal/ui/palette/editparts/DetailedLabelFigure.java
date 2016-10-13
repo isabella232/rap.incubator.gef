@@ -45,7 +45,7 @@ import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
  */
 public class DetailedLabelFigure extends Figure {
 
-	private static final FontCache FONTCACHE = new FontCache();
+	private final FontCache FONTCACHE = new FontCache();
 	private static final Border PAGE_BORDER = new MarginBorder(0, 1, 0, 1);
 
 	private SelectableImageFigure image;
@@ -263,9 +263,9 @@ public class DetailedLabelFigure extends Figure {
 		protected void useShadedImage() {
 			disposeShadedImage();
 			if (super.getImage() != null) {
-				ImageData data = ImageUtilities
-						.createShadedImage(super.getImage(),
-								ColorConstants.menuBackgroundSelected());
+				ImageData data = ImageUtilities.createShadedImage(
+						super.getImage(),
+						ColorConstants.menuBackgroundSelected());
 				// UNSUPPORTED - Create image using RAP supported constructor
 				// shadedImage = new Image(null, data,
 				// data.getTransparencyMask());
