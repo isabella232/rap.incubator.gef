@@ -121,7 +121,7 @@ class BufferedGraphicsSource implements GraphicsSource {
 			graphics = new SWTGraphics(controlGC);
 		}
 
-		//graphics.setClip(inUse);
+		graphics.setClip(inUse);
 		return graphics;
 	}
 

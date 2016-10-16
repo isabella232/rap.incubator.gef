@@ -297,25 +297,29 @@ public class AdvancedGraphicsTests extends AbstractFixtureTestCase {
 		float[] dash = new float[] { 2.5f, 3, 8 };
 
 		Runnable[] tests = new Runnable[] {
-				new LineSettings(new LineAttributes(0.0f, SWT.CAP_FLAT,
-						SWT.JOIN_MITER,
-						org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null, 0, 10)),
-				new LineSettings(new LineAttributes(1.0f, SWT.CAP_FLAT,
-						SWT.JOIN_MITER,
-						org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null, 0, 10)),
-				new LineSettings(new LineAttributes(2.5f, SWT.CAP_FLAT,
-						SWT.JOIN_MITER,
-						org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null, 0, 10)),
+				new LineSettings(
+						new LineAttributes(0.0f, SWT.CAP_FLAT, SWT.JOIN_MITER,
+								org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null,
+								0, 10)),
+				new LineSettings(
+						new LineAttributes(1.0f, SWT.CAP_FLAT, SWT.JOIN_MITER,
+								org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null,
+								0, 10)),
+				new LineSettings(
+						new LineAttributes(2.5f, SWT.CAP_FLAT, SWT.JOIN_MITER,
+								org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null,
+								0, 10)),
 				new LineSettings(new LineAttributes(5.0f, SWT.CAP_FLAT,
 						SWT.JOIN_MITER,
 						org.eclipse.draw2d.rap.swt.SWT.LINE_DASH, null, 0, 10)),
-				new LineSettings(new LineAttributes(5.0f, SWT.CAP_FLAT,
-						SWT.JOIN_ROUND,
-						org.eclipse.draw2d.rap.swt.SWT.LINE_DASHDOTDOT, null,
-						0, 10)),
-				new LineSettings(new LineAttributes(4.5f, SWT.CAP_FLAT,
-						SWT.JOIN_MITER,
-						org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null, 0, 10)),
+				new LineSettings(
+						new LineAttributes(5.0f, SWT.CAP_FLAT, SWT.JOIN_ROUND,
+								org.eclipse.draw2d.rap.swt.SWT.LINE_DASHDOTDOT,
+								null, 0, 10)),
+				new LineSettings(
+						new LineAttributes(4.5f, SWT.CAP_FLAT, SWT.JOIN_MITER,
+								org.eclipse.draw2d.rap.swt.SWT.LINE_SOLID, null,
+								0, 10)),
 				new LineSettings(
 						new LineAttributes(9.0f, SWT.CAP_FLAT, SWT.JOIN_ROUND,
 								org.eclipse.draw2d.rap.swt.SWT.LINE_CUSTOM,

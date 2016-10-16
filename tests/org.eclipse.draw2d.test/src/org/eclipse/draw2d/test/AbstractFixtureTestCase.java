@@ -1,9 +1,9 @@
 package org.eclipse.draw2d.test;
 
-import junit.framework.TestCase;
-
 import org.eclipse.rap.rwt.testfixture.internal.Fixture;
 import org.eclipse.swt.widgets.Display;
+
+import junit.framework.TestCase;
 
 public abstract class AbstractFixtureTestCase extends TestCase {
 
@@ -21,7 +21,7 @@ public abstract class AbstractFixtureTestCase extends TestCase {
 	 * @see TestCase#setUp()
 	 */
 	protected void setUp() throws Exception {
-		Fixture.setUp();
+		Fixture.setUp(true);
 		display = new Display();
 	}
 

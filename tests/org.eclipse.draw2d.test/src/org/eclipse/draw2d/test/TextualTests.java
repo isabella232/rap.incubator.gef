@@ -48,7 +48,7 @@ public class TextualTests extends BaseTestCase {
 
 		// TODO enhance verification
 		List boldFragments = bold.getFragments();
-		assertTrue(boldFragments.size() == 3);
+		assertEquals(3, boldFragments.size());
 		List italicFragments = italics.getFragments();
 		assertTrue(italicFragments.size() == 2);
 	}

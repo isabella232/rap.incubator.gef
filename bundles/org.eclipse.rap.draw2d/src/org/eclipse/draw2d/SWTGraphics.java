@@ -887,10 +887,10 @@ public class SWTGraphics extends Graphics {
 			// - FILL_RULE_WHOLE_NUMBER);
 			// }
 
-			// if ((changes & AA_MASK) != 0) {
-			// gc.setAntialias(((hints & AA_MASK) >> AA_SHIFT)
-			// - AA_WHOLE_NUMBER);
-			// }
+			 if ((changes & AA_MASK) != 0) {
+				 gc.setAntialias(((hints & AA_MASK) >> AA_SHIFT)
+						 - AA_WHOLE_NUMBER);
+			 }
 
 			if ((changes & AA_MASK) != 0) {
 				gc.setAntialias(((hints & AA_MASK) >> AA_SHIFT)
@@ -1106,7 +1106,7 @@ public class SWTGraphics extends Graphics {
 			// it works.
 			appliedState.graphicHints ^= FILL_RULE_MASK;
 		}
-//		gc.setClipping(path);
+		gc.setClipping(path);
 		appliedState.relativeClip = currentState.relativeClip = null;
 	}
 
@@ -1135,14 +1135,16 @@ public class SWTGraphics extends Graphics {
 		if (!clipping.isEmpty()) {
 			// UNSUPPORTED - api is not implemented in RAP
 			// Path flatPath = new Path(path.getDevice(), path, 0.01f);
-			// PathData pathData = flatPath.getPathData();
-			// flatPath.dispose();
+			Path flatPath = new Path(path.getDevice(), path.getPathData());
+			
+			PathData pathData = flatPath.getPathData();
+			flatPath.dispose();
 			Region region = new Region(path.getDevice());
-			// UNSUPPORTED - api is not implemented in RAP
-			// loadPath(region, pathData.points, pathData.types);
+			
+			loadPath(region, pathData.points, pathData.types);
 			region.intersect(new org.eclipse.swt.graphics.Rectangle(clipping.x,
 					clipping.y, clipping.width, clipping.height));
-//			gc.setClipping(region.getBounds());
+			gc.setClipping(region.getBounds());
 			appliedState.relativeClip = currentState.relativeClip = null;
 			region.dispose();
 		}

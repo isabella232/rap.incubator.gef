@@ -44,7 +44,14 @@ public final class NativeGraphicsSource implements GraphicsSource {
 	 * @see GraphicsSource#getGraphics(Rectangle)
 	 */
 	public Graphics getGraphics(Rectangle r) {
-		canvas.redraw(r.x, r.y, r.width, r.height, false);
+		//RAP [am]
+		// since 423952 fix, partial redraw is implemented in RAP
+		// it breaks GEF port as now for some reasons some part
+		// of canvas disappear during redraw event
+		
+		//canvas.redraw(r.x, r.y, r.width, r.height, false);
+		canvas.redraw();
+		//ENDRAP
 		canvas.update();
 		return null;
 	}
