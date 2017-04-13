@@ -595,8 +595,8 @@ public class FigureCanvas extends Composite {
 		getViewport().setIgnoreScroll(true);
 		getViewport().setHorizontalLocation(hOffset);
 		getViewport().setIgnoreScroll(false);
-		getInnerCanvas().redraw(expose.x, expose.y, expose.width,
-				expose.height, true);
+		getInnerCanvas().redraw(/*expose.x, expose.y, expose.width,
+				expose.height, true*/);
 	}
 
 	/**
@@ -650,8 +650,8 @@ public class FigureCanvas extends Composite {
 		getViewport().setIgnoreScroll(true);
 		getViewport().setVerticalLocation(vOffset);
 		getViewport().setIgnoreScroll(false);
-		getInnerCanvas().redraw(expose.x, expose.y, expose.width,
-				expose.height, true);
+		getInnerCanvas().redraw(/*expose.x, expose.y, expose.width,
+				expose.height, true*/);
 	}
 
 	public void scroll(int destX, int destY, int x, int y, int width,
