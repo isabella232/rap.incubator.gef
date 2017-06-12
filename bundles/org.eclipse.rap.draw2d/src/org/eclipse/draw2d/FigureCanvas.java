@@ -14,6 +14,10 @@ package org.eclipse.draw2d;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.rap.rwt.internal.textsize.TextSizeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DragDetectListener;
 import org.eclipse.swt.events.FocusListener;
@@ -29,10 +33,6 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Slider;
-
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
  * A scrolling Canvas that contains {@link Figure Figures} viewed through a
@@ -206,22 +206,26 @@ public class FigureCanvas extends Composite {
 			}
 
 			protected void layout(Composite composite, boolean flushCache) {
-				org.eclipse.swt.graphics.Point size = composite.getSize();
-				int vScrollBarWidth = getVScrollBarWidth();
-				int hScrollBarHeight = getHScrollBarHeight();
-				if (!getHorizontalSlider().isVisible()) {
-					hScrollBarHeight = 0;
+				//re layout only outside textsize determination event, to avoid 
+				//unwanted scrolling top left with big diagram
+				if(!TextSizeUtil.isTemporaryResize()) {
+					org.eclipse.swt.graphics.Point size = composite.getSize();
+					int vScrollBarWidth = getVScrollBarWidth();
+					int hScrollBarHeight = getHScrollBarHeight();
+					if (!getHorizontalSlider().isVisible()) {
+						hScrollBarHeight = 0;
+					}
+					if (!getVerticalSlider().isVisible()) {
+						vScrollBarWidth = 0;
+					}
+					getHorizontalSlider().setBounds(0, size.y - hScrollBarHeight,
+							size.x - vScrollBarWidth, hScrollBarHeight);
+					getVerticalSlider().setBounds(size.x - vScrollBarWidth, 0,
+							vScrollBarWidth, size.y - hScrollBarHeight);
+					innerCanvas.setLocation(0, 0);
+					innerCanvas.setSize(size.x - vScrollBarWidth, size.y
+							- hScrollBarHeight);
 				}
-				if (!getVerticalSlider().isVisible()) {
-					vScrollBarWidth = 0;
-				}
-				getHorizontalSlider().setBounds(0, size.y - hScrollBarHeight,
-						size.x - vScrollBarWidth, hScrollBarHeight);
-				getVerticalSlider().setBounds(size.x - vScrollBarWidth, 0,
-						vScrollBarWidth, size.y - hScrollBarHeight);
-				innerCanvas.setLocation(0, 0);
-				innerCanvas.setSize(size.x - vScrollBarWidth, size.y
-						- hScrollBarHeight);
 			}
 		});
 		Slider horizontalBar = getHorizontalSlider();
